@@ -3,13 +3,19 @@
 
 # TEAM
 
-    <name> -- <role> -- <twitter>
+    Vincenzo Petronio -- dev -- google.com/+VincenzoPetronio
 
 # THANKS
 
-    <name>
+    <name> -- <role> -- <link>
+    
+# SITE
 
+	Last update: 2014/02/09
+	Doctype: HTML5
+	Software: Aptana Studio 3, Notepad++
+  
 # TECHNOLOGY COLOPHON
 
     HTML5, CSS3
-    jQuery, Modernizr
+    jQuery, Modernizr, Initializr, Bootstrap
