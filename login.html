@@ -22,6 +22,9 @@
                 padding-top: 50px;
                 padding-bottom: 20px;
             }
+            div {
+            	padding: 10px;
+            }
         </style>
         <link rel="stylesheet" href="css/bootstrap-theme.min.css">
         <link rel="stylesheet" href="css/main.css">
@@ -35,9 +38,9 @@
         <![endif]-->
         <div class="container">
     		<div class="row">
-				<div class="col-md-4 col-md-offset-4">
+				<div class="col-md-4 col-md-offset-4" align="center">
 					<div>
-						<h1>[Login] [WebControl]</h1>
+						<h2>[Login] [WebControl]</h2>
 					</div>
 					<div>
 						<a href="http://emule-project.net" target="_blank"><img src="logo.jpg" class="img-responsive" alt="eMule-Project"></a>
@@ -46,7 +49,7 @@
 						<form method="post" name="login" role="form">
 							<div class="form-group">
 								<label for="psw">[EnterPassword]</label>
-								<input type="password" id="psw" name=p maxlength=12 value="" autofocus class="form-control input-sm">
+								<input type="password" id="psw" name=p maxlength=12 value="" autofocus class="form-control">
 								<input type="hidden" name=w value="password">
 							</div>
 							<button type="submit" class="btn">[LoginNow]</button>
@@ -54,10 +57,12 @@
 					</div>
 				</div>
 			</div>
+			<div class="row" align="right">
+				<footer>
+					<p>2014</p>
+				</footer>
+			</div>
 		</div>
-		<footer>
-	        	<p>2014</p>
-			</footer>
 		<!-- /container -->
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
 	    <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.1.min.js"><\/script>')</script>
