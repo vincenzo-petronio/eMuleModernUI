@@ -21,26 +21,24 @@
 	</head>
 
 	<body>
-		<nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="background: url(main_menubg.gif)">
+		<nav class="navbar navbar-default navbar-static-top" role="navigation" style="background: url(main_menubg.gif)">
 			<div class="container">
 				
 				<div class="navbar-header">
-					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-custom">
-					</button>
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-custom"></button>
 					<a class="navbar-brand" href="#">[WebControl]</a>
 				</div>
 				
 				<div class="collapse navbar-collapse" id="navbar-collapse-custom">
-					<ul class="nav navbar-nav">
-						<!-- <li><a href="#"><img src="h_emule.gif" alt="[eMuleAppName] | [WebControl]" />[WebControl]</a></li> -->
-						<li class="active"><a href="?ses=[Session]&amp;w=transfer"><img src="h_transfer.gif"><br />[Transfer]</a></li>
-						<li><a href="?ses=[Session]&amp;w=kad"><img src="h_kad.gif"><br /><label>[Kad]</label></a></li>
-						<li><a href="?ses=[Session]&amp;w=server"><img src="h_server.gif"><br />[Server]</a></li>
-						<li><a href="?ses=[Session]&amp;w=search"><img src="h_search.gif"><br />[Search]</a></li>
-						<li><a href="?ses=[Session]&amp;w=shared"><img src="h_shared.gif"><br />[Shared]</a></li>
-						<li><a href="?ses=[Session]&amp;w=stats"><img src="h_statistic.gif"><br />[Stats]</a></li>
-						<li><a href="?ses=[Session]&amp;w=graphs"><img src="h_graph.gif"><br />[Graphs]</a></li>
-						<li><a href="?ses=[Session]&amp;w=options"><img src="h_preferences.gif"><br />[Options]</a></li>
+					<ul class="nav navbar-nav" align="center">
+						<li><a href="?ses=[Session]&amp;w=kad"><img src="h_kad.gif" align="center"><br />[Kad]</a></li>
+						<li><a href="?ses=[Session]&amp;w=server"><img src="h_server.gif" align="center"><br />[Server]</a></li>
+						<li><a href="?ses=[Session]&amp;w=transfer"><img src="h_transfer.gif" align="center"><br />[Transfer]</a></li>
+						<li><a href="?ses=[Session]&amp;w=search"><img src="h_search.gif" align="center"><br />[Search]</a></li>
+						<li><a href="?ses=[Session]&amp;w=shared"><img src="h_shared.gif" align="center"><br />[Shared]</a></li>
+						<li><a href="?ses=[Session]&amp;w=stats"><img src="h_statistic.gif" align="center"><br />[Stats]</a></li>
+						<li><a href="?ses=[Session]&amp;w=graphs"><img src="h_graph.gif" align="center"><br />[Graphs]</a></li>
+						<li><a href="?ses=[Session]&amp;w=options"><img src="h_preferences.gif" align="center"><br />[Options]</a></li>
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown">[WebOptions]<b class="caret"></b></a>
 							<ul class="dropdown-menu">
@@ -50,9 +48,9 @@
 								<li><a href="?ses=[Session]&amp;w=log#end"><img src="h_log.gif" /> [Log]</a></li>
 								<li><a href="?ses=[Session]&amp;w=sinfo#end"><img src="h_log.gif" /> [ServerInfo]</a></li>
 								<li><a href="?ses=[Session]&amp;w=debuglog#end"><img src="h_log.gif" /> [DebugLog]</a></li>
-								<li><a href="http://emule-project.net" target="_blank"><img src="l_homepage.gif" />eMule Homepage</a></li>
+								<li><a href="http://emule-project.net" target="_blank"><img src="l_homepage.gif" /> eMule Homepage</a></li>
 								<li class="divider"></li>
-								<li><a href="?ses=[Session]&amp;w=logout"><img src="l_logout.gif" />[Logout]</a></li>
+								<li><a href="?ses=[Session]&amp;w=logout"><img src="l_logout.gif" /> [Logout]</a></li>
 							</ul>
 						</li>
 					</ul>
@@ -60,6 +58,46 @@
 				
 			</div>
 		</nav>
+		
+		<div class="container">
+			<div class="row">
+				<div class="col-md-2">
+					<p>[Connection]</p>
+				</div>
+				<div class="col-md-5">
+					<img src="[ConState].gif" />
+					<label> [ConText] </label><br />
+				</div>
+				<div class="col-md-5">
+					<img src="h_kad.gif" width="16" />
+					<label> [KadConText] </label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-2">
+					<p>[QuickStats]</p>
+				</div>
+				<div class="col-md-10">
+					<div class="row">
+						<div class="col-md-3">
+							<img src="arrow_down.gif" /><label> [Down]: [CurDownload] ([MaxDownload]) </label>
+						</div>
+						<div class="col-md-3">
+							<img src="arrow_up.gif" /><label> [Up]: [CurUpload] ([MaxUpload]) </label>
+						</div>
+						<div class="col-md-3">
+							<img src="l_con.gif" /><label> [Con]: [CurConnection] ([MaxConnection]) </label>
+						</div>
+						<div class="col-md-3">
+							<img src="l_users.gif" /><label> [Users]: [CurUsers] ([MaxUsers]) </label>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="jumbotron">
+		</div>
 		
 		<!-- eD2k MODAL -->
 		<div class="modal fade" id="ed2k-modal" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
@@ -82,7 +120,7 @@
 				</div>
 			</div>
 		</div>
-				
+		
 		<!-- /container -->
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
 		<script src="js/vendor/bootstrap.min.js"></script>
