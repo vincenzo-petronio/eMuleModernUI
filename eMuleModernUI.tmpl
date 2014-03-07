@@ -129,7 +129,6 @@
 								<li class="divider"></li>
 								<li><a href="?ses=[Session]&amp;w=myinfo"><img src="l_info.gif" /> [MyInfo]</a></li>
 								<li><a href="?ses=[Session]&amp;w=log#end"><img src="h_log.gif" /> [Log]</a></li>
-								<li><a href="?ses=[Session]&amp;w=sinfo#end"><img src="h_log.gif" /> [ServerInfo]</a></li>
 								<li><a href="?ses=[Session]&amp;w=debuglog#end"><img src="h_log.gif" /> [DebugLog]</a></li>
 								<li><a href="http://emule-project.net" target="_blank"><img src="l_homepage.gif" /> eMule Homepage</a></li>
 								<li class="divider"></li>
@@ -187,9 +186,6 @@
 			</div>
 		</div>
 
-		<div class="jumbotron">
-		</div>
-		
 		<!-- eD2k MODAL -->
 		<div class="modal fade" id="ed2k-modal" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
 			<div class="modal-dialog">
@@ -294,3 +290,45 @@
 	</div>
 </div>
 <--TMPL_MYINFO_END-->
+
+
+<--TMPL_LOG-->
+<div class="container">
+	<div class="row">
+		<div class="col-sm-12">
+			<pre>[Log]</pre>
+		</div>
+		<form method="get" name="reset" role="form" class="col-xs-6">
+			<div class="form-group">
+				<input type="hidden" name="ses" value="[Session]">
+				<input type="hidden" name="w" value="log">
+				<input type="hidden" name="clear" value="yes">
+			</div>
+			<button type="submit" class="btn">[Clear]</button>
+		</form>
+	</div>
+</div>
+<--TMPL_LOG_END-->
+
+
+<--TMPL_DEBUGLOG-->
+<div class="container">
+	<div class="row">
+		<div class="col-sm-12">
+			<pre>[DebugLog]</pre>
+		</div>
+		<form method="get" name="reset" role="form" class="col-xs-6">
+			<div class="form-group">
+				<input type="hidden" name="ses" value="[Session]">
+				<input type="hidden" name="w" value="debuglog">
+				<input type="hidden" name="clear" value="yes">
+			</div>
+			<button type="submit" class="btn">[Clear]</button>
+		</form>
+	</div>
+</div>
+<--TMPL_DEBUGLOG_END-->
+
+
+<--TMPL_SERVERINFO-->
+<--TMPL_SERVERINFO_END-->
