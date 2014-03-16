@@ -332,3 +332,64 @@
 
 <--TMPL_SERVERINFO-->
 <--TMPL_SERVERINFO_END-->
+
+
+<--TMPL_SERVER_LIST-->
+[AddServerBox]
+<--TMPL_SERVER_LIST_END-->
+
+
+<--TMPL_SERVER_LINE-->
+<tbody>
+	<tr>
+		<td><img src="is_[ServerType].gif">&nbsp;[Servername]</td>
+		<td>[Address]</td>
+		<td>[Description]</td>
+		<td>[Ping]</td>
+		<td>[Users]</td>
+		<td>[Files]</td>
+		<td>[Priority]</td>
+		<td>[Failed]</td>
+		<td>[Limit]</td>
+		<td>[Version]</td>
+	</tr>
+</tbody>
+<--TMPL_SERVER_LINE_END-->
+
+
+<--TMPL_ADDSERVERBOX-->
+<div class="container">
+	<div class="row">
+		<div class="col-sm-12">
+			<ul class="nav nav-tabs">
+				<li class="active"><a href="#"><img src="l_connect.gif" />[ServerOptions]</a></li>
+				<li><a href="#"><img src="l_search.gif" /> [UpdateServerMetFromURL]</a></li>
+				<li><a href="#"><img src="l_search.gif" /> [AddServer]</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-12">
+			<div class="table-responsive">
+				<table class="table table-hover table-bordered">
+					<thead>
+						<tr>
+							<th><a href="?ses=[Session]&amp;w=server&amp;sort=state[SortState]">&times;</a>&nbsp;<a href="?ses=[Session]&amp;w=server&amp;sort=name[SortName]">[ServernameH][ServernameI]</a></th>
+							<th><a href="?ses=[Session]&amp;w=server&amp;sort=ip[SortIP]">[AddressH][AddressI]</a></th>
+							<th><a href="?ses=[Session]&amp;w=server&amp;sort=description[SortDescription]">[DescriptionH][DescriptionI]</a></th>
+							<th><a href="?ses=[Session]&amp;w=server&amp;sort=ping[SortPing]">[PingH][PingI]</a></th>
+							<th><a href="?ses=[Session]&amp;w=server&amp;sort=users[SortUsers]">[UsersH][UsersI]</a></th>
+							<th><a href="?ses=[Session]&amp;w=server&amp;sort=files[SortFiles]">[FilesH][FilesI]</a></th>
+							<th><a href="?ses=[Session]&amp;w=server&amp;sort=priority[SortPriority]">[PriorityH][PriorityI]</a></th>
+							<th><a href="?ses=[Session]&amp;w=server&amp;sort=failed[SortFailed]">[FailedH][FailedI]</a></th>
+							<th><a href="?ses=[Session]&amp;w=server&amp;sort=limit[SortLimit]">[LimitH][LimitI]</a></th>
+							<th><a href="?ses=[Session]&amp;w=server&amp;sort=version[SortVersion]">[VersionH][VersionI]</a></th>
+						</tr>
+					</thead>
+					[ServersList]
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+<--TMPL_ADDSERVERBOX_END-->

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html class="no-js">
+	<head>
+		<meta charset="utf-8">
+
+		<!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame
+		Remove this if you use the .htaccess -->
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+		<title>[eMuleAppName] [version] - [WebControl]</title>
+		<meta name="description" content="Template for eMule Web interface based on HTML5 Boilerplate & Bootstrap">
+		<meta name="viewport" content="width=device-width; initial-scale=1.0">
+
+		<!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
+		<link rel="shortcut icon" href="/favicon.ico">
+		<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+		
+		<link rel="stylesheet" href="css/bootswatch/bootstrap.min.css">
+		<link rel="stylesheet" href="css/bootstrap-theme.min.css">
+		<script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+	</head>
+
+	<body>
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12">
+					<ul class="nav nav-tabs">
+						<li class="active"><a href="#"><img src="l_connect.gif" />[ServerOptions]</a></li>
+						<li><a href="#"><img src="l_search.gif" /> [UpdateServerMetFromURL]</a></li>
+						<li><a href="#"><img src="l_search.gif" /> [AddServer]</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="table-responsive">
+						<table class="table table-hover table-bordered">
+							<thead>
+								<tr>
+									<th><a href="?ses=[Session]&amp;w=server&amp;sort=state[SortState]">&times;</a>&nbsp;<a href="?ses=[Session]&amp;w=server&amp;sort=name[SortName]">[ServernameH][ServernameI]</a></th>
+									<th><a href="?ses=[Session]&amp;w=server&amp;sort=ip[SortIP]">[AddressH][AddressI]</a></th>
+									<th><a href="?ses=[Session]&amp;w=server&amp;sort=description[SortDescription]">[DescriptionH][DescriptionI]</a></th>
+									<th><a href="?ses=[Session]&amp;w=server&amp;sort=ping[SortPing]">[PingH][PingI]</a></th>
+									<th><a href="?ses=[Session]&amp;w=server&amp;sort=users[SortUsers]">[UsersH][UsersI]</a></th>
+									<th><a href="?ses=[Session]&amp;w=server&amp;sort=files[SortFiles]">[FilesH][FilesI]</a></th>
+									<th><a href="?ses=[Session]&amp;w=server&amp;sort=priority[SortPriority]">[PriorityH][PriorityI]</a></th>
+									<th><a href="?ses=[Session]&amp;w=server&amp;sort=failed[SortFailed]">[FailedH][FailedI]</a></th>
+									<th><a href="?ses=[Session]&amp;w=server&amp;sort=limit[SortLimit]">[LimitH][LimitI]</a></th>
+									<th><a href="?ses=[Session]&amp;w=server&amp;sort=version[SortVersion]">[VersionH][VersionI]</a></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td><img src="is_[ServerType].gif">&nbsp;[Servername]</td>
+									<td>[Address]</td>
+									<td>[Description]</td>
+									<td>[Ping]</td>
+									<td>[Users]</td>
+									<td>[Files]</td>
+									<td>[Priority]</td>
+									<td>[Failed]</td>
+									<td>[Limit]</td>
+									<td>[Version]</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<!-- /container -->
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+		<script src="js/vendor/bootstrap.min.js"></script>
+	</body>
+</html>
