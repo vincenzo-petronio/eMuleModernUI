@@ -18,24 +18,108 @@
 		<link rel="stylesheet" href="css/bootswatch/bootstrap.min.css">
 		<link rel="stylesheet" href="css/bootstrap-theme.min.css">
 		<script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+		<style>
+			.top-buffer { 
+				margin-top:50px; 
+			}
+		</style>
 	</head>
 
 	<body>
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-12">
+					<!-- Nav tabs -->
 					<ul class="nav nav-tabs">
-						<li class="active"><a href="#"><img src="l_connect.gif" />[ServerOptions]</a></li>
-						<li><a href="#"><img src="l_search.gif" /> [UpdateServerMetFromURL]</a></li>
-						<li><a href="#"><img src="l_search.gif" /> [AddServer]</a></li>
+						<li class="active"><a href="#serverTab1" data-toggle="tab"><img src="l_connect.gif" />[ServerOptions]</a></li>
+						<li><a href="#serverTab2" data-toggle="tab"><img src="l_search.gif" /> [UpdateServerMetFromURL]</a></li>
+						<li><a href="#serverTab3" data-toggle="tab"><img src="l_search.gif" /> [AddServer]</a></li>
 					</ul>
+					<!-- Tab panes -->
+					<div class="tab-content">
+						<div class="tab-pane active" id="serverTab1">
+							<form role="form" method="get" action="" style="padding:15px;">
+								<p>
+									<button type="button" class="btn btn-default" onclick="window.location.href='[URL_Connect]'">[Connect]</button>
+									<button type="button" class="btn btn-default" onclick="window.location.href='[URL_Disconnect]'">[Disconnect]</button>
+								</p>
+							</form>
+						</div>
+						<div class="tab-pane" id="serverTab2">
+							<form role="form" method="get" action="" style="padding:15px;">
+								<div class="row">
+									<div class="col-xs-4">
+										<div class="input-group">
+											<input type="text" class="form-control" placeholder="[IP]">
+											<span class="input-group-btn">
+												<input type="hidden" name=ses value="[Session]">
+												<input type="hidden" name=w value="server">
+												<input type="hidden" name=c value="options">
+												<input name="updateservermetfromurl" type="hidden" value="true">
+												<input type="submit" class="btn btn-default">[Apply]</input>
+											</span>
+										</div>
+									</div>
+								</div>
+							</form>
+						</div>
+						<div class="tab-pane" id="serverTab3">
+							<form role="form" method="get" action="" style="padding:15px;" class="col-sm-4">
+								<div class="form-group">
+									<input type="text" class="form-control" name="serveraddr" placeholder="[IP]">
+								</div>
+								<div class="form-group">
+									<input type="text" class="form-control" name="serverport" placeholder="[Port]">
+								</div>
+								<div class="form-group">
+									<input type="text" class="form-control" name="servername" placeholder="[Name]">
+								</div>
+								<div class="form-group">
+									<label>
+										[Static]
+										<input type="checkbox" name="addtostatic" value="true">
+									</label>
+								</div>
+								<div class="form-group">
+									<label>
+										[ConnectNow]
+										<input type="checkbox" name="connectnow" value="true">
+									</label>
+								</div>
+								<div class="form-group">
+									<label>[Priority]</label>
+									<select class="form-control" name="priority">
+										<option value="low">[Low]</option>
+										<option value="normal">[Normal]</option>
+										<option value="high">[High]</option>
+									</select>
+								</div>
+								<div>
+									<input type="hidden" name=ses value="[Session]">
+									<input type="hidden" name=w value="server">
+									<input type="hidden" name=c value="options">
+									<input name="addserver" type="hidden" value="true">
+									<button type="submit" class="btn btn-default">[Add]</input>
+								</div>
+							</form>
+						</div>
+					</div>
 				</div>
 			</div>
-			<div class="row">
+			<div id="messageDiv" class="alert alert-info">
+				[Message]
+			</div>
+			<div class="row top-buffer">
 				<div class="col-sm-12">
 					<div class="table-responsive">
 						<table class="table table-hover table-bordered">
 							<thead>
+								<tr>
+									<th>
+										<img src="l_server.gif">&nbsp;
+										<a id="popoverColumnMenu" rel="popover" href="#" data-placement="bottom" data-trigger="click" data-content="" data-html="true">[ServerList]</a>
+									</th>
+								</tr>
 								<tr>
 									<th><a href="?ses=[Session]&amp;w=server&amp;sort=state[SortState]">&times;</a>&nbsp;<a href="?ses=[Session]&amp;w=server&amp;sort=name[SortName]">[ServernameH][ServernameI]</a></th>
 									<th><a href="?ses=[Session]&amp;w=server&amp;sort=ip[SortIP]">[AddressH][AddressI]</a></th>
@@ -51,13 +135,13 @@
 							</thead>
 							<tbody>
 								<tr>
-									<td><img src="is_[ServerType].gif">&nbsp;[Servername]</td>
+									<td><a id="popoverServerNameMenu" rel="popover" href="#" data-placement="bottom" data-trigger="click" data-content="" data-html="true">[Servername]</a></td>
 									<td>[Address]</td>
 									<td>[Description]</td>
 									<td>[Ping]</td>
 									<td>[Users]</td>
 									<td>[Files]</td>
-									<td>[Priority]</td>
+									<td><a id="popoverServerPriorityMenu" rel="popover" href="#" data-placement="bottom" data-trigger="click" data-content="" data-html="true">[Priority]</a></td>
 									<td>[Failed]</td>
 									<td>[Limit]</td>
 									<td>[Version]</td>
@@ -72,5 +156,129 @@
 		<!-- /container -->
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
 		<script src="js/vendor/bootstrap.min.js"></script>
+		
+		<script type="text/javascript">
+			$(document).ready(
+				function () {
+					$("#popoverColumnMenu").popover({
+						content: columnmenu(event, 
+							'server', 'menu', '[ServernameM]', '[ServernameH]', '[AddressM]', '[AddressH]', 
+							'[DescriptionM]', '[DescriptionH]', '[PingM]', '[PingH]', '[UsersM]', '[UsersH]', 
+							'[FilesM]', '[FilesH]', '[PriorityM]', '[PriorityH]', '[FailedM]', '[FailedH]', 
+							'[LimitM]', '[LimitH]', '[VersionM]', '[VersionH]', '', '')
+					}).on("mouseenter", function () {
+						var _this = this;
+						$(this).popover("show");
+						$(this).siblings(".popover").on("mouseleave", function () {
+							$(_this).popover('hide');
+						});
+					}).on("mouseleave", function () {
+						var _this = this;
+						setTimeout(function () {
+							if (!$(".popover:hover").length) {
+								$(_this).popover("hide")
+							}
+						}, 300);
+					});
+					
+					$("#popoverServerNameMenu").popover({
+						content: servermenu(event, '[admin]', '[ed2k]', '[session]', '[ip]', '[port]', '[isstatic]')
+					}).on("mouseenter", function () {
+						var _this = this;
+						$(this).popover("show");
+						$(this).siblings(".popover").on("mouseleave", function () {
+							$(_this).popover('hide');
+						});
+					}).on("mouseleave", function () {
+						var _this = this;
+						setTimeout(function () {
+							if (!$(".popover:hover").length) {
+								$(_this).popover("hide")
+							}
+						}, 300);
+					});
+					
+					$("#popoverServerPriorityMenu").popover({
+						content: serverpriomenu(event, '[admin]', '[session]', '[ip]', '[port]', '[server-priority]')
+					}).on("mouseenter", function () {
+						var _this = this;
+						$(this).popover("show");
+						$(this).siblings(".popover").on("mouseleave", function () {
+							$(_this).popover('hide');
+						});
+					}).on("mouseleave", function () {
+						var _this = this;
+						setTimeout(function () {
+							if (!$(".popover:hover").length) {
+								$(_this).popover("hide")
+							}
+						}, 300);
+					});
+				}
+			);
+			
+			function columnmenu(event, tab, menu, m1, e1, m2, e2, m3, e3, m4, e4, m5, e5, m6, e6, m7, e7, m8, e8, m9, e9, m10, e10, m11, e11) {
+				var code = new Array();
+				code = "";
+
+				for (i=1; i<=11; i++) {
+					try {
+						var e = eval('e'+i);
+						var m = eval('m'+i);
+						var j = i - 1;
+				
+						if(e != "") { 
+							code += '<a href="?ses=[Session]&amp;w=' + tab + '&amp;c=' + menu + '&amp;m=' + j +'&amp;v=1"><p><img src="checked.gif" style="background: #999; padding: 2px;">' + m + '&nbsp;</p></a>' 
+						}
+						else if(m != "") { 
+							code += '<a href="?ses=[Session]&amp;w=' + tab + '&amp;c=' + menu + '&amp;m=' + j +'&amp;v=0"><p><img src="checked_no.gif" style="background: #999; padding: 2px;">' + m +'&nbsp;</p></a>' 
+						}
+					} catch(e) {
+						alert('Doesn\'t exist that variable');
+					}
+				}
+				
+				return code;
+			}
+			
+			function servermenu(event, admin, ed2k, session, ip, port, isstatic) {
+				var code = new Array();
+				ed2kinfo = ed2k;
+				code = "";
+				
+				if(admin == "admin") {
+					code += '<a href="?ses=' + session + '&w=server&c=connect&ip=' + ip + '&port=' + port + '"><p><img src="l_connect.gif" style="padding: 2px;">[Connect]<p></a>'
+					code += '<a href="?ses=' + session + '&w=server&c=remove&ip=' + ip + '&port=' + port + '" onclick="return confirm(\'[ConfirmRemove]\')' + '"><p><img src="l_cancel.gif" style="padding: 2px;">[RemoveServer]</p></a>'
+					if(isstatic)
+						code += '<a href="?ses=' + session + '&w=server&c=removefromstatic&ip=' + ip + '&port=' + port + '"><p><img src="l_static.gif" style="padding: 2px;">[StaticServer]</p></a>'
+					else
+						code += '<a href="?ses=' + session + '&w=server&c=addtostatic&ip=' + ip + '&port=' + port + '"><p><img src="l_static.gif" style="padding: 2px;">[StaticServer]</p></a>'
+				}
+			
+				return code;
+			}
+			
+			function serverpriomenu(event, admin, session, ip, port, priority) {
+				var code = new Array();
+				code = "";
+			
+				if(admin == "admin") {
+					if(priority == "Low")
+						code = '<a href="?ses=' + session + '&w=server&c=priolow&ip=' + ip + '&port=' + port + '"><p><img src="checked.gif">[PriorityLow]</p></a>'
+					else
+						code = '<a href="?ses=' + session + '&w=server&c=priolow&ip=' + ip + '&port=' + port + '"><p><img src="checked_no.gif">[PriorityLow]</p></a>'
+					if(priority == "Normal")
+						code += '<a href="?ses=' + session + '&w=server&c=prionormal&ip=' + ip + '&port=' + port + '"><p><img src="checked.gif">[PriorityNormal]</p></a>'
+					else
+						code += '<a href="?ses=' + session + '&w=server&c=prionormal&ip=' + ip + '&port=' + port + '"><p><img src="checked_no.gif">[PriorityNormal]</p></a>'
+					if(priority == "High")
+						code += '<a href="?ses=' + session + '&w=server&c=priohigh&ip=' + ip + '&port=' + port + '"><p><img src="checked.gif">[PriorityHigh]</p></a>'
+					else
+						code += '<a href="?ses=' + session + '&w=server&c=priohigh&ip=' + ip + '&port=' + port + '"><p><img src="checked_no.gif">[PriorityHigh]</p></a>'
+				}
+				
+				return code;
+			}
+		</script>
 	</body>
 </html>
