@@ -94,19 +94,26 @@
 						<table class="table table-hover table-bordered">
 							<thead>
 								<tr>
-									<th>
-										<p>[Result] <a href="?ses=[Session]&amp;w=search">([Message])</a></p>
-									</th>
+									<th><a href="#" id="popoverColumnMenu" rel="popover" data-placement="bottom" data-trigger="click" data-content="" data-html="true">[Result]</a> <a href="?ses=[Session]&amp;w=search">([Message])</a></th>
 								</tr>
 								<tr>
-									<th>
-									</th>
+									<th><a href="?ses=[Session]&amp;w=search&amp;sort=3&amp;sortAsc=[SORTASCVALUE3]">&times;</a></th>
+									<th><a href="?ses=[Session]&amp;w=search&amp;sort=5&amp;sortAsc=[SORTASCVALUE5]">&times;</a></th>
+									<th><a href="?ses=[Session]&amp;w=search&amp;sort=0&amp;sortAsc=[SORTASCVALUE0]">[FilenameH][FilenameI]</a></th>
+									<th><a href="?ses=[Session]&amp;w=search&amp;sort=1&amp;sortAsc=[SORTASCVALUE1]">[FilesizeH][FilesizeI]</a></th>
+									<th><a href="?ses=[Session]&amp;w=search&amp;sort=2&amp;sortAsc=[SORTASCVALUE2]">[FilehashH][FilehashI]</a></th>
+									<th><a href="?ses=[Session]&amp;w=search&amp;sort=3&amp;sortAsc=[SORTASCVALUE3]">[SourcesH][SourcesI]</a></th>
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td>
-									</td>
+								<tr style="background-color: #C0C0C0;">
+									<td><a href="#" onMouseover="searchmenu(event,'%s')" onMouseout="delayhidemenu()"><img src="is_%s.gif"></a></td>
+									<td><img src="filetype_%s.gif"></td>
+									<td><p>%s</p></td>
+									<td><p>%s</p></td>
+									<td><p>%s</p></td>
+									<td><p>%s</p></td>
+									<td><input type="checkbox" name="downloads" value="%s"></td>
 								</tr>
 							</tbody>
 						</table>
@@ -116,6 +123,7 @@
 					</form>
 				</div>
 			</div>
+			
 		</div>
 	</body>
 </html>
