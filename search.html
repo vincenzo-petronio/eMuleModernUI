@@ -94,7 +94,10 @@
 						<table class="table table-hover table-bordered">
 							<thead>
 								<tr>
-									<th><a href="#" id="popoverColumnMenu" rel="popover" data-placement="bottom" data-trigger="click" data-content="" data-html="true">[Result]</a> <a href="?ses=[Session]&amp;w=search">([Message])</a></th>
+									<th>
+										<a href="#" id="popoverSearchColumnMenu" rel="popover" data-placement="bottom" data-trigger="click" data-content="" data-html="true">[Result]</a> 
+										<a href="?ses=[Session]&amp;w=search">([Message])</a>
+									</th>
 								</tr>
 								<tr>
 									<th><a href="?ses=[Session]&amp;w=search&amp;sort=3&amp;sortAsc=[SORTASCVALUE3]">&times;</a></th>
@@ -107,7 +110,8 @@
 							</thead>
 							<tbody>
 								<tr style="background-color: #C0C0C0;">
-									<td><a href="#" onMouseover="searchmenu(event,'%s')" onMouseout="delayhidemenu()"><img src="is_%s.gif"></a></td>
+									<!-- <td><a href="#" onMouseover="searchmenu(event,'%s')"><img src="is_%s.gif"></a></td> -->
+									<td><img src="is_%s.gif"><a href="#" id="popoverDownloadEd2k" rel="popover" data-placement="right" data-trigger="hover" data-content="%s"> Down </a></td>
 									<td><img src="filetype_%s.gif"></td>
 									<td><p>%s</p></td>
 									<td><p>%s</p></td>
@@ -125,5 +129,73 @@
 			</div>
 			
 		</div>
+		
+		<!-- /container -->
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+		<script src="js/vendor/bootstrap.min.js"></script>
+		<script>
+			$(document).ready(
+				function() {
+					$("#popoverSearchColumnMenu").popover({
+						content: columnmenu(event, 
+							'search', 'menu', '[FilenameM]', '[FilenameH]', '[FilesizeM]', '[FilesizeH]', 
+							'[FilehashM]', '[FilehashH]', '[SourcesM]', '[SourcesH]', '', '', '', '', 
+							'', '', '', '', '', '', '', '', '', '')
+					}).on("mouseenter", function () {
+						var _this = this;
+						$(this).popover("show");
+						$(this).siblings(".popover").on("mouseleave", function () {
+							$(_this).popover('hide');
+						});
+					}).on("mouseleave", function () {
+						var _this = this;
+						setTimeout(function () {
+							if (!$(".popover:hover").length) {
+								$(_this).popover("hide");
+							}
+						}, 300);
+					});
+					
+					$("#popoverDownloadEd2k").popover().on("mouseenter", function () {
+						var _this = this;
+						$(this).popover("show");
+						$(this).siblings(".popover").on("mouseleave", function () {
+							$(_this).popover('hide');
+						});
+					}).on("mouseleave", function () {
+						var _this = this;
+						setTimeout(function () {
+							if (!$(".popover:hover").length) {
+								$(_this).popover("hide");
+							}
+						}, 300);
+					});
+				}
+			);
+			
+			function columnmenu(event, tab, menu, m1, e1, m2, e2, m3, e3, m4, e4, m5, e5, m6, e6, m7, e7, m8, e8, m9, e9, m10, e10, m11, e11) {
+				var code = new Array();
+				code = "";
+
+				for (i=1; i<=11; i++) {
+					try {
+						var e = eval('e'+i);
+						var m = eval('m'+i);
+						var j = i - 1;
+				
+						if(e != "") { 
+							code += '<a href="?ses=[Session]&amp;w=' + tab + '&amp;c=' + menu + '&amp;m=' + j +'&amp;v=1"><p><img src="checked.gif" style="background: #999; padding: 2px;">' + m + '&nbsp;</p></a>';
+						}
+						else if(m != "") { 
+							code += '<a href="?ses=[Session]&amp;w=' + tab + '&amp;c=' + menu + '&amp;m=' + j +'&amp;v=0"><p><img src="checked_no.gif" style="background: #999; padding: 2px;">' + m +'&nbsp;</p></a>';
+						}
+					} catch(e) {
+						alert('Doesn\'t exist that variable');
+					}
+				}
+				
+				return code;
+			}
+		</script>
 	</body>
 </html>
