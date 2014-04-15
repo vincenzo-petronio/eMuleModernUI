@@ -248,7 +248,7 @@
 				
 				if(admin == "admin") {
 					code += '<a href="?ses=' + session + '&w=server&c=connect&ip=' + ip + '&port=' + port + '"><p><img src="l_connect.gif" style="padding: 2px;">[Connect]<p></a>';
-					code += '<a href="?ses=' + session + '&w=server&c=remove&ip=' + ip + '&port=' + port + '" onclick="return confirm(\'[ConfirmRemove]\')' +'"><p><img src="l_cancel.gif" style="padding: 2px;">[RemoveServer]</p></a>'
+					code += '<a href="?ses=' + session + '&w=server&c=remove&ip=' + ip + '&port=' + port + '" onclick="return confirm(\'[ConfirmRemove]\')' +'"><p><img src="l_cancel.gif" style="padding: 2px;">[RemoveServer]</p></a>';
 					if(isstatic)
 						code += '<a href="?ses=' + session + '&w=server&c=removefromstatic&ip=' + ip + '&port=' + port + '"><p><img src="l_static.gif" style="padding: 2px;">[StaticServer]</p></a>';
 					else

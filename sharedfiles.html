@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="no-js">
+	<head>
+		<meta charset="utf-8">
+
+		<!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame
+		Remove this if you use the .htaccess -->
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+		<title>[eMuleAppName] [version] - [WebControl]</title>
+		<meta name="description" content="Template for eMule Web interface based on HTML5 Boilerplate & Bootstrap">
+		<meta name="viewport" content="width=device-width; initial-scale=1.0">
+		
+		<!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
+		<link rel="shortcut icon" href="/favicon.ico">
+		<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+		
+		<link rel="stylesheet" href="css/bootswatch/bootstrap.min.css">
+		<link rel="stylesheet" href="css/bootstrap-theme.min.css">
+		<script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+		<style>
+			.top-buffer { 
+				margin-top:50px; 
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="container">
+			<div>
+				<b>[Message]</b>
+			</div>
+			<div class="row top-buffer">
+				<div class="col-sm-12">
+					<div class="table-responsive">
+						<table class="table table-hover table-bordered">
+							<thead>
+								<tr>
+									<th>
+										<img src="l_shared.gif">&nbsp;
+										<a id="popoverColumnMenu" rel="popover" href="#" data-placement="bottom" data-trigger="click" data-content="" data-html="true">[SharedList]</a>
+									</th>
+								</tr>
+								<tr>
+									<th><a href="?ses=[Session]&amp;w=shared&[SortState]"><b>&times;</b></a></th>
+									<th><a href="?ses=[Session]&amp;w=shared&[SortType]"><b>&times;</b></a></th>
+									<th><a href="?ses=[Session]&amp;w=shared&[SortName]"><b>[Filename][FilenameI]</b></a></th>
+									<th><a href="?ses=[Session]&amp;w=shared&[SortTransferred]"><b>[FileTransferred][FileTransferredI]</b></a></th>
+									<th><a href="?ses=[Session]&amp;w=shared&[SortRequests]"><b>[FileRequests][FileRequestsI]</b></a></th>
+									<th><a href="?ses=[Session]&amp;w=shared&[SortAccepts]"><b>[FileAccepts][FileAcceptsI]</b></a></th>
+									<th><a href="?ses=[Session]&amp;w=shared&[SortSize]"><b>[Size][SizeI]</b></a></th>
+									<th><a href="?ses=[Session]&amp;w=shared&[SortCompletes]"><b>[Completes][CompletesI]</b></a></th>
+									<th><a href="?ses=[Session]&amp;w=shared&[SortPriority]"><b>[Priority][PriorityI]</b></a></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td style="background-image: [FileState].gif; background-position: center; background-repeat: no-repeat"><a id="popoverSharedFileMenu" rel="popover" href="#" data-placement="bottom" data-trigger="click" data-content="" data-html="true"><img src="is_[FileIsPriority].gif"></a></td>
+									<td><img src="filetype_[FileType].gif"></td>
+									<td><acronym title="[FileName] Hash: [FileHash]">[ShortFileName]</acronym></td>
+									<td>[FileTransferred][FileAllTimeTransferred]</td>
+									<td>[FileRequests][FileAllTimeRequests]</td>
+									<td>[FileAccepts][FileAllTimeAccepts]</td>
+									<td>[FileSize]</td>
+									<td>[Completes]</td>
+									<td><a href="#" id="popoverSharedPriorityMenu" rel="popover" data-placement="bottom" data-trigger="click" data-content="" data-html="true">[Priority]</a></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			<div>
+				<form>
+					<input type="button" name="queue" value="[Reload]" onClick="self.location.href='/?ses=[Session]&w=shared&reload=true'">
+				</form>
+			</div>
+		</div>
+		
+		<!-- /container -->
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+		<script src="js/vendor/bootstrap.min.js"></script>
+		
+		<script type="text/javascript">
+			$(document).ready(
+				function () {
+					$("#popoverColumnMenu").popover({
+						content: columnmenu(event, 'shared', 'menu', '[FilenameM]', '[Filename]', 
+						'[FileTransferredM]', '[FileTransferred]', '[FileRequestsM]', '[FileRequests]', 
+						'[FileAcceptsM]', '[FileAccepts]', '[SizeM]', '[Size]', '[CompletesM]', 
+						'[Completes]', '[PriorityM]', '[Priority]', 
+						'', '', '', '', '', '', '', '', '', '')
+					}).on("mouseenter", function () {
+						var _this = this;
+						$(this).popover("show");
+						$(this).siblings(".popover").on("mouseleave", function () {
+							$(_this).popover('hide');
+						});
+					}).on("mouseleave", function () {
+						var _this = this;
+						setTimeout(function () {
+							if (!$(".popover:hover").length) {
+								$(_this).popover("hide");
+							}
+						}, 300);
+					});
+					
+					$("#popoverSharedPriorityMenu").popover({
+						content: serverpriomenu(event, '[admin]', '[session]', '[hash]', '[shared-priority]')
+					}).on("mouseenter", function () {
+						var _this = this;
+						$(this).popover("show");
+						$(this).siblings(".popover").on("mouseleave", function () {
+							$(_this).popover('hide');
+						});
+					}).on("mouseleave", function () {
+						var _this = this;
+						setTimeout(function () {
+							if (!$(".popover:hover").length) {
+								$(_this).popover("hide");
+							}
+						}, 300);
+					});
+					
+					$("#popoverSharedFileMenu").popover({
+						content: sharedmenu(event, '[admin]', '[ed2k]', '[session]', '[hash]', '[fname]', '[FileState]', '[Downloadable]')
+					}).on("mouseenter", function () {
+						var _this = this;
+						$(this).popover("show");
+						$(this).siblings(".popover").on("mouseleave", function () {
+							$(_this).popover('hide');
+						});
+					}).on("mouseleave", function () {
+						var _this = this;
+						setTimeout(function () {
+							if (!$(".popover:hover").length) {
+								$(_this).popover("hide");
+							}
+						}, 300);
+					});
+				}
+			);
+			
+			function columnmenu(event, tab, menu, m1, e1, m2, e2, m3, e3, m4, e4, m5, e5, m6, e6, m7, e7, m8, e8, m9, e9, m10, e10, m11, e11) {
+				var code = new Array();
+				code = "";
+
+				for (i=1; i<=11; i++) {
+					try {
+						var e = eval('e'+i);
+						var m = eval('m'+i);
+						var j = i - 1;
+				
+						if(e != "") { 
+							code += '<a href="?ses=[Session]&amp;w=' + tab + '&amp;c=' + menu + '&amp;m=' + j +'&amp;v=1"><p><img src="checked.gif" style="background: #999; padding: 2px;">' + m + '&nbsp;</p></a>';
+						}
+						else if(m != "") { 
+							code += '<a href="?ses=[Session]&amp;w=' + tab + '&amp;c=' + menu + '&amp;m=' + j +'&amp;v=0"><p><img src="checked_no.gif" style="background: #999; padding: 2px;">' + m +'&nbsp;</p></a>';
+						}
+					} catch(e) {
+						alert('Doesn\'t exist that variable');
+					}
+				}
+				
+				return code;
+			}
+			
+			function sharedmenu(event,admin,ed2k,session,hash,fname,filestate,downloadable) {
+				var code = new Array();
+				ed2kinfo = ed2k;
+			
+				code = '<a href="javascript:ToClipboard(ed2kinfo);"><div><img src="l_ed2klink.gif"><img src="checked_no.gif">[Ed2klink]&nbsp;</div></a>';
+				if (downloadable == "yes")
+					code += '<a href="?ses=' + session + '&w=getfile&filehash=' + hash +'"><div><img src="downloading.gif"><img src="checked_no.gif">[RunFile]&nbsp;</div></a>';
+			
+				return code;
+			}
+		</script>
+	</body>
+</html>

@@ -349,12 +349,12 @@
 				code = "";
 				
 				if(admin == "admin") {
-					code += '<a href="?ses=' + session + '&w=server&c=connect&ip=' + ip + '&port=' + port + '"><p><img src="l_connect.gif" style="padding: 2px;">[Connect]<p></a>'
-					code += '<a href="?ses=' + session + '&w=server&c=remove&ip=' + ip + '&port=' + port + '" onclick="return confirm(\'[ConfirmRemove]\')' + '"><p><img src="l_cancel.gif" style="padding: 2px;">[RemoveServer]</p></a>'
+					code += '<a href="?ses=' + session + '&w=server&c=connect&ip=' + ip + '&port=' + port + '"><p><img src="l_connect.gif" style="padding: 2px;">[Connect]<p></a>';
+					code += '<a href="?ses=' + session + '&w=server&c=remove&ip=' + ip + '&port=' + port + '" onclick="return confirm(\'[ConfirmRemove]\')' + '"><p><img src="l_cancel.gif" style="padding: 2px;">[RemoveServer]</p></a>';
 					if(isstatic)
-						code += '<a href="?ses=' + session + '&w=server&c=removefromstatic&ip=' + ip + '&port=' + port + '"><p><img src="l_static.gif" style="padding: 2px;">[StaticServer]</p></a>'
+						code += '<a href="?ses=' + session + '&w=server&c=removefromstatic&ip=' + ip + '&port=' + port + '"><p><img src="l_static.gif" style="padding: 2px;">[StaticServer]</p></a>';
 					else
-						code += '<a href="?ses=' + session + '&w=server&c=addtostatic&ip=' + ip + '&port=' + port + '"><p><img src="l_static.gif" style="padding: 2px;">[StaticServer]</p></a>'
+						code += '<a href="?ses=' + session + '&w=server&c=addtostatic&ip=' + ip + '&port=' + port + '"><p><img src="l_static.gif" style="padding: 2px;">[StaticServer]</p></a>';
 				}
 			
 				return code;
@@ -813,3 +813,11 @@
 	</form>
 </div>
 <--TMPL_PREFERENCES_END-->
+
+
+<--TMPL_SHARED_LIST-->
+<--TMPL_SHARED_LIST_END-->
+
+
+<--TMPL_SHARED_LINE-->
+<--TMPL_SHARED_LINE_END-->
