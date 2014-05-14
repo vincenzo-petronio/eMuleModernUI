@@ -316,6 +316,40 @@
 							}
 						}, 300);
 					});
+					
+					$("#popoverSharedFileMenu").popover({
+						content: sharedmenu(event, '[admin]', '[ed2k]', '[session]', '[hash]', '[fname]', '[FileState]', '[Downloadable]')
+					}).on("mouseenter", function () {
+						var _this = this;
+						$(this).popover("show");
+						$(this).siblings(".popover").on("mouseleave", function () {
+							$(_this).popover('hide');
+						});
+					}).on("mouseleave", function () {
+						var _this = this;
+						setTimeout(function () {
+							if (!$(".popover:hover").length) {
+								$(_this).popover("hide");
+							}
+						}, 300);
+					});
+					
+					$("#popoverSharedPriorityMenu").popover({
+						content: serverpriomenu(event, '[admin]', '[session]', '[hash]', '[shared-priority]')
+					}).on("mouseenter", function () {
+						var _this = this;
+						$(this).popover("show");
+						$(this).siblings(".popover").on("mouseleave", function () {
+							$(_this).popover('hide');
+						});
+					}).on("mouseleave", function () {
+						var _this = this;
+						setTimeout(function () {
+							if (!$(".popover:hover").length) {
+								$(_this).popover("hide");
+							}
+						}, 300);
+					});
 				}
 			);
 			
@@ -379,6 +413,17 @@
 						code += '<a href="?ses=' + session + '&w=server&c=priohigh&ip=' + ip + '&port=' + port + '"><p><img src="checked_no.gif">[PriorityHigh]</p></a>'
 				}
 				
+				return code;
+			}
+			
+			function sharedmenu(event, admin, ed2k, session, hash, fname, filestate, downloadable) {
+				var code = new Array();
+				ed2kinfo = ed2k;
+			
+				code = '<a href="javascript:ToClipboard(ed2kinfo);"><div><img src="l_ed2klink.gif"><img src="checked_no.gif">[Ed2klink]&nbsp;</div></a>';
+				if (downloadable == "yes")
+					code += '<a href="?ses=' + session + '&w=getfile&filehash=' + hash +'"><div><img src="downloading.gif"><img src="checked_no.gif">[RunFile]&nbsp;</div></a>';
+			
 				return code;
 			}
 			
@@ -832,10 +877,61 @@
 
 
 <--TMPL_SHARED_LIST-->
+<div class="container">
+	<div>
+		<b>[Message]</b>
+	</div>
+	<div class="row top-buffer">
+		<div class="col-sm-12">
+			<div class="table-responsive">
+				<table class="table table-hover table-bordered">
+					<thead>
+						<tr>
+							<th>
+								<img src="l_shared.gif">&nbsp;
+								<a id="popoverColumnMenu" rel="popover" href="#" data-placement="bottom" data-trigger="click" data-content="" data-html="true">[SharedList]</a>
+							</th>
+						</tr>
+						<tr>
+							<th><a href="?ses=[Session]&amp;w=shared&[SortState]"><b>&times;</b></a></th>
+							<th><a href="?ses=[Session]&amp;w=shared&[SortType]"><b>&times;</b></a></th>
+							<th><a href="?ses=[Session]&amp;w=shared&[SortName]"><b>[Filename][FilenameI]</b></a></th>
+							<th><a href="?ses=[Session]&amp;w=shared&[SortTransferred]"><b>[FileTransferred][FileTransferredI]</b></a></th>
+							<th><a href="?ses=[Session]&amp;w=shared&[SortRequests]"><b>[FileRequests][FileRequestsI]</b></a></th>
+							<th><a href="?ses=[Session]&amp;w=shared&[SortAccepts]"><b>[FileAccepts][FileAcceptsI]</b></a></th>
+							<th><a href="?ses=[Session]&amp;w=shared&[SortSize]"><b>[Size][SizeI]</b></a></th>
+							<th><a href="?ses=[Session]&amp;w=shared&[SortCompletes]"><b>[Completes][CompletesI]</b></a></th>
+							<th><a href="?ses=[Session]&amp;w=shared&[SortPriority]"><b>[Priority][PriorityI]</b></a></th>
+						</tr>
+					</thead>
+					<tbody>
+						[SharedFilesList]
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<div>
+		<form>
+			<input type="button" name="queue" value="[Reload]" onClick="self.location.href='/?ses=[Session]&w=shared&reload=true'">
+		</form>
+	</div>
+</div>
 <--TMPL_SHARED_LIST_END-->
 
 
 <--TMPL_SHARED_LINE-->
+<tr>
+	<td style="background-image: [FileState].gif; background-position: center; background-repeat: no-repeat"><a id="popoverSharedFileMenu" rel="popover" href="#" data-placement="bottom" data-trigger="click" data-content="" data-html="true"><img src="is_[FileIsPriority].gif"></a></td>
+	<td><img src="filetype_[FileType].gif"></td>
+	<td><acronym title="[FileName] Hash: [FileHash]">[ShortFileName]</acronym></td>
+	<td>[FileTransferred][FileAllTimeTransferred]</td>
+	<td>[FileRequests][FileAllTimeRequests]</td>
+	<td>[FileAccepts][FileAllTimeAccepts]</td>
+	<td>[FileSize]</td>
+	<td>[Completes]</td>
+	<td><a href="#" id="popoverSharedPriorityMenu" rel="popover" data-placement="bottom" data-trigger="click" data-content="" data-html="true">[Priority]</a></td>
+</tr>
 <--TMPL_SHARED_LINE_END-->
 
 
