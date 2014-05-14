@@ -381,6 +381,22 @@
 				
 				return code;
 			}
+			
+			function obj(menu) {
+	 			return (navigator.appName == "Microsoft Internet Explorer") ? this[menu] : document.getElementById(menu);
+			}
+			
+			function togglevisible(treepart) {
+				if (this.obj("T"+treepart).style.visibility == "hidden") {
+					this.obj("T"+treepart).style.position = "";
+					this.obj("T"+treepart).style.visibility = "";
+					document["I"+treepart].src = "stats_visible.gif";
+				} else {
+					this.obj("T"+treepart).style.position = "absolute";
+					this.obj("T"+treepart).style.visibility = "hidden";
+					document["I"+treepart].src = "stats_hidden.gif";
+				}
+			}
 		</script>
 	</body>
 </html>
@@ -821,3 +837,14 @@
 
 <--TMPL_SHARED_LINE-->
 <--TMPL_SHARED_LINE_END-->
+
+
+<--TMPL_STATS-->
+<div class="container">
+	<div class="row top-buffer">
+		<div class="col-sm-12">
+			[Stats]
+		</div>
+	</div>
+</div>
+<--TMPL_STATS_END-->
