@@ -944,3 +944,41 @@
 	</div>
 </div>
 <--TMPL_STATS_END-->
+
+
+<--TMPL_COMMENTLIST-->
+<div class="container">
+	<div class="row top-buffer">
+		<div class="col-sm-12">
+			<div class="table-responsive">
+				<table class="table table-hover table-bordered">
+					<thead>
+						<tr>
+							<th>[COMMENTS]</th>
+						</tr>
+						<tr>
+							<th>[USERNAME]</th>
+							<th>[FILENAME]</th>
+							<th>[COMMENT]</th>
+							<th>[RATING]</th>
+						</tr>
+					</thead>
+					<tbody>
+						[COMMENTLINES]
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+<--TMPL_COMMENTLIST_END-->
+
+
+<--TMPL_COMMENTLIST_LINE-->
+<tr>
+	<td>%s</td>
+	<td>%s</td>
+	<td>%s</td>
+	<td>%s</td>
+</tr>
+<--TMPL_COMMENTLIST_LINE_END-->
