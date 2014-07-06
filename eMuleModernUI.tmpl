@@ -317,6 +317,27 @@
 						}, 300);
 					});
 					
+					$("#popoverSharedColumnMenu").popover({
+						content: columnmenu(event, 'shared', 'menu', '[FilenameM]', '[Filename]', 
+						'[FileTransferredM]', '[FileTransferred]', '[FileRequestsM]', '[FileRequests]', 
+						'[FileAcceptsM]', '[FileAccepts]', '[SizeM]', '[Size]', '[CompletesM]', 
+						'[Completes]', '[PriorityM]', '[Priority]', 
+						'', '', '', '', '', '', '', '', '', '')
+					}).on("mouseenter", function () {
+						var _this = this;
+						$(this).popover("show");
+						$(this).siblings(".popover").on("mouseleave", function () {
+							$(_this).popover('hide');
+						});
+					}).on("mouseleave", function () {
+						var _this = this;
+						setTimeout(function () {
+							if (!$(".popover:hover").length) {
+								$(_this).popover("hide");
+							}
+						}, 300);
+					});
+					
 					$("#popoverSharedFileMenu").popover({
 						content: sharedmenu(event, '[admin]', '[ed2k]', '[session]', '[hash]', '[fname]', '[FileState]', '[Downloadable]')
 					}).on("mouseenter", function () {
@@ -889,7 +910,7 @@
 						<tr>
 							<th>
 								<img src="l_shared.gif">&nbsp;
-								<a id="popoverColumnMenu" rel="popover" href="#" data-placement="bottom" data-trigger="click" data-content="" data-html="true">[SharedList]</a>
+								<a id="popoverSharedColumnMenu" rel="popover" href="#" data-placement="bottom" data-trigger="click" data-content="" data-html="true">[SharedList]</a>
 							</th>
 						</tr>
 						<tr>
