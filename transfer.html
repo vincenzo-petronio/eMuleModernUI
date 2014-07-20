@@ -34,12 +34,41 @@
 							<thead>
 								<tr>
 									<th>
-										<img src="arrow_down.gif">&nbsp;
-										<a id="popoverTransferColumnMenu" rel="popover" href="#" data-placement="bottom" data-trigger="click" data-content="" data-html="true">[DownloadList]</a>
+										<a id="popoverTransferColumnMenu" rel="popover" href="#" data-placement="bottom" data-trigger="click" data-content="" data-html="true"><img src="arrow_down.gif">[DownloadList]</a>
 									</th>
 									<th>
 										<a id="popoverTransferCatMenu" rel="popover" href="#" data-placement="bottom" data-trigger="click" data-content="" data-html="true"><img src="m_category.gif">[Category]</a>
 									</th>
+									<th>
+										<a href="?ses=[Session]&amp;w=transfer&clearcompleted=all"><img src="m_clearcompleted.gif"></a>
+									</th>
+									<th>
+										<a id="popoverTransferPrioMenu" rel="popover" href="#" data-placement="bottom" data-trigger="click" data-content="" data-html="true"><img src="m_catprio.gif"></a>
+									</th>
+								</tr>
+								<tr>
+									<th><a href="?ses=[Session]&amp;w=transfer&amp;sort=dstate[SortDState]"><b>&times;</b></a></th>
+									<th><a href="?ses=[Session]&amp;w=transfer&amp;sort=dtype[SortDType]"><b>&times;</b></a></th>
+									<th><a href="?ses=[Session]&amp;w=transfer&amp;sort=dname[SortDName]"><b>[DFilename][DFilenameI]</b></a></th>
+									<th><a href="?ses=[Session]&amp;w=transfer&amp;sort=dsize[SortDSize]"><b>[DSize][DSizeI]</b></a></th>
+									<th><a href="?ses=[Session]&amp;w=transfer&amp;sort=dtransferred[SortDTransferred]"><b>[DTransferred][DTransferredI]</b></a></th>
+									<th><a href="?ses=[Session]&amp;w=transfer&amp;sort=dprogress[SortDProgress]"><b>[DProgress][DProgressI]</b></a></th>
+									<th><a href="?ses=[Session]&amp;w=transfer&amp;sort=dspeed[SortDSpeed]"><b>[DSpeed][DSpeedI]</b></a></th>
+									<th><a href="?ses=[Session]&amp;w=transfer&amp;sort=dsources[SortDSources]"><b>[DSources][DSourcesI]</b></a></th>
+									<th><a href="?ses=[Session]&amp;w=transfer&amp;sort=dpriority[SortDPriority]"><b>[DPriority][DPriorityI]</b></a></th>
+									<th><a href="?ses=[Session]&amp;w=transfer&amp;sort=dcategory[SortDCategory]"><b>[DCategory][DCategoryI]</b></a></th>
+								</tr>
+								<tr>
+									<th><b>[TotalDown]</b></th>
+									<th></th>
+									<th></th>
+									<th><b>[TotalDownSize]</b></th>
+									<th><b>[TotalDownTransferred]</b></th>
+									<th></th>
+									<th><b>[TotalDownSpeed]</b></th>
+									<th></th>
+									<th></th>
+									<th><b>[TotalFiles]</b></th>
 								</tr>
 							</thead>
 							<tbody>
@@ -101,7 +130,7 @@
 						'[DSizeM]', '[DSize]', '[DTransferredM]', '[DTransferred]', 
 						'[DProgressM]', '[DProgress]', '[DSpeedM]', '[DSpeed]', '[DSourcesM]', 
 						'[DSources]', '[DPriorityM]', '[DPriority]', 
-						'[DCategoryM]', '[DCategory]', '', '')
+						'[DCategoryM]', '[DCategory]', '', '', '', '', '', '')
 					}).on("mouseenter", function () {
 						var _this = this;
 						$(this).popover("show");
@@ -133,8 +162,62 @@
 							}
 						}, 300);
 					});
+					
+					$("#popoverTransferPrioMenu").popover({
+						content: catpriomenu(event, '[admin]', '[Session]')
+					}).on("mouseenter", function () {
+						var _this = this;
+						$(this).popover("show");
+						$(this).siblings(".popover").on("mouseleave", function () {
+							$(_this).popover('hide');
+						});
+					}).on("mouseleave", function () {
+						var _this = this;
+						setTimeout(function () {
+							if (!$(".popover:hover").length) {
+								$(_this).popover("hide");
+							}
+						}, 300);
+					});
 				}
 			);
+			
+			function columnmenu(event, tab, menu, m1, e1, m2, e2, m3, e3, m4, e4, m5, e5, m6, e6, m7, e7, m8, e8, m9, e9, m10, e10, m11, e11) {
+				var code = new Array();
+				code = "";
+
+				for (i=1; i<=11; i++) {
+					try {
+						var e = eval('e'+i);
+						var m = eval('m'+i);
+						var j = i - 1;
+				
+						if(e != "") { 
+							code += '<a href="?ses=[Session]&amp;w=' + tab + '&amp;c=' + menu + '&amp;m=' + j +'&amp;v=1"><p><img src="checked.gif" style="background: #999; padding: 2px;">' + m + '&nbsp;</p></a>';
+						}
+						else if(m != "") { 
+							code += '<a href="?ses=[Session]&amp;w=' + tab + '&amp;c=' + menu + '&amp;m=' + j +'&amp;v=0"><p><img src="checked_no.gif" style="background: #999; padding: 2px;">' + m +'&nbsp;</p></a>';
+						}
+					} catch(e) {
+						alert('Doesn\'t exist that variable');
+					}
+				}
+				
+				return code;
+			}
+			
+			function catpriomenu(event, admin, session) {
+				var code = new Array();
+				
+				if(admin == "admin") {
+					code = '<a href="?ses=' + session + '&w=transfer&c=menuprio&p=low"><div><img src="checked_no.gif">[PriorityLow]&nbsp;</div></a>';
+					code += '<a href="?ses=' + session + '&w=transfer&c=menuprio&p=normal"><div><img src="checked_no.gif">[PriorityNormal]&nbsp;</div></a>';
+					code += '<a href="?ses=' + session + '&w=transfer&c=menuprio&p=high"><div><img src="checked_no.gif">[PriorityHigh]&nbsp;</div></a>';
+					code += '<a href="?ses=' + session + '&w=transfer&c=menuprio&p=auto"><div><img src="checked_no.gif">[PriorityAuto]&nbsp;</div></a>';
+				}
+				
+				return code;
+			}
 		</script>
 	</body>
 </html>
